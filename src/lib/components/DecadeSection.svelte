@@ -8,27 +8,13 @@
 	export let chartComponent: any = null;
 
 	let sectionElement: HTMLElement;
-	let isVisible = false;
+	let isVisible = true;
 
 	$: hint = getBirthYearHint($birthYear, parseInt(section.decade.split('er')[0]));
 
 	onMount(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					isVisible = entry.isIntersecting;
-				});
-			},
-			{ threshold: 0.2 }
-		);
-
-		if (sectionElement) {
-			observer.observe(sectionElement);
-		}
-
-		return () => {
-			observer.disconnect();
-		};
+		// Sections sind sofort sichtbar für Pinning
+		isVisible = true;
 	});
 </script>
 
@@ -82,13 +68,10 @@
 		position: relative;
 		background: #0a0a0a;
 		padding: 0;
-		opacity: 0;
-		transform: translateY(20px);
-		transition: opacity 0.6s ease, transform 0.6s ease;
+		will-change: transform;
 
 		&.visible {
 			opacity: 1;
-			transform: translateY(0);
 		}
 	}
 
@@ -206,8 +189,6 @@
 	@media (prefers-reduced-motion: reduce) {
 		.decade-section {
 			opacity: 1;
-			transform: none;
-			transition: none;
 		}
 	}
 

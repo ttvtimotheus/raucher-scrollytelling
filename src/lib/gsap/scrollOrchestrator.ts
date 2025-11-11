@@ -23,11 +23,12 @@ export function createSectionScroll(
 		start: 'top top',
 		end: '+=100%',
 		pin: pinContent,
-		scrub: 1,
+		pinSpacing: true,
+		scrub: true,
 		onUpdate: (self) => {
 			onUpdate(self.progress);
 		},
-		anticipatePin: 1,
+		invalidateOnRefresh: true,
 		markers: false
 	});
 
