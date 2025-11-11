@@ -6,6 +6,8 @@
 	import ChartWrapper from '$lib/components/ChartWrapper.svelte';
 	import Interlude from '$lib/components/Interlude.svelte';
 	import NarrativeBridge from '$lib/components/NarrativeBridge.svelte';
+	import QuizMoment from '$lib/components/QuizMoment.svelte';
+	import AudioManager from '$lib/components/AudioManager.svelte';
 	import { decades } from '$lib/data/decades';
 
 	let mounted = false;
@@ -16,6 +18,7 @@
 </script>
 
 <main class="scrollytelling-container">
+	<AudioManager />
 	<HeroCowboy />
 
 	<section id="birth-year-section">
@@ -49,6 +52,20 @@
 			title="Die ersten Warnungen"
 			body="<p>In den 1970ern begannen Gesundheitswarnungen auf Zigarettenpackungen zu erscheinen. Die Industrie reagierte nicht mit Rückzug, sondern mit <strong>noch aggressiverer Werbung</strong>.</p><p>Fast die Hälfte aller Erwachsenen rauchte regelmäßig. Zigaretten waren nicht nur ein Produkt – sie waren Teil der Identität.</p>"
 			highlight="Die Zigarette versprach nicht nur einen Moment. Sie versprach, wer du sein könntest."
+			theme="yellow"
+		/>
+		
+		<!-- Quiz: Werbeverbot -->
+		<QuizMoment 
+			question="Wann wurde Tabakwerbung im deutschen Fernsehen verboten?"
+			options={[
+				{ label: '1975', value: 1975 },
+				{ label: '1989', value: 1989 },
+				{ label: '2007', value: 2007 },
+				{ label: '2021', value: 2021 }
+			]}
+			correctAnswer={2007}
+			explanation="Erst 2007 wurde Tabakwerbung im deutschen Fernsehen vollständig verboten – später als in den meisten anderen europäischen Ländern. Außenwerbung (Plakate) war sogar bis 2021 erlaubt."
 		/>
 		
 		<!-- 1980er: Visuelle Szene -->
@@ -56,6 +73,7 @@
 			section={decades[2]} 
 			chartComponent={ChartWrapper}
 			layout="left"
+			colorTheme="1980"
 		/>
 		
 		<!-- Bridge: 1980er Strategie -->
@@ -91,6 +109,7 @@
 			title="Der Rückzug der Giganten"
 			body="<p>Die 2000er markierten einen Wendepunkt. Werbeverbote wurden stärker, Raucherzahlen sanken, Werbebudgets schrumpften.</p><p>Aber die Industrie gab nicht auf. Sie veränderte nur ihre Strategie: <strong>Neue Produkte, neue Versprechen</strong>.</p>"
 			highlight="Das Spiel blieb gleich. Nur die Regeln änderten sich."
+			theme="blue"
 		/>
 		
 		<!-- 2010er/2020er: Finale Daten -->
@@ -98,6 +117,7 @@
 			section={decades[5]} 
 			chartComponent={ChartWrapper}
 			layout="right"
+			colorTheme="2010"
 		/>
 	{/if}
 

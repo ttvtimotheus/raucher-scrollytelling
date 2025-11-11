@@ -7,6 +7,7 @@
 	export let section: DecadeSection;
 	export let chartComponent: any = null;
 	export let layout: 'left' | 'right' | 'full' | 'stacked' = 'left';
+	export let colorTheme: '1950' | '1970' | '1980' | '1990' | '2000' | '2010' | '2020' = '1950';
 
 	let sectionElement: HTMLElement;
 	let isVisible = true;
@@ -27,6 +28,14 @@
 	class:layout-right={layout === 'right'}
 	class:layout-full={layout === 'full'}
 	class:layout-stacked={layout === 'stacked'}
+	class:theme-1950={colorTheme === '1950'}
+	class:theme-1970={colorTheme === '1970'}
+	class:theme-1980={colorTheme === '1980'}
+	class:theme-1990={colorTheme === '1990'}
+	class:theme-2000={colorTheme === '2000'}
+	class:theme-2010={colorTheme === '2010'}
+	class:theme-2020={colorTheme === '2020'}
+	data-decade={colorTheme}
 	bind:this={sectionElement}
 >
 	<div class="section-grid">
