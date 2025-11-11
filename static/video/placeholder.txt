@@ -1,0 +1,36 @@
+# Video Placeholder Files
+
+Place your video files in this directory with the following naming:
+
+## Required Videos:
+
+1. **cowboy_loop.mp4** / **cowboy_loop.webm**
+   - 5-10 second archival style loop
+   - Sepia graded cowboy/marlboro man aesthetic
+   - Resolution: 1920x1080 minimum
+   - Optimized for web (H.264 codec for MP4, VP9 for WebM)
+
+2. **80s_pastell.mp4** / **80s_pastell.webm** (Optional)
+   - Pastel colored 1980s aesthetic clips
+   - Female empowerment advertising style
+
+3. **mtv_90s.mp4** / **mtv_90s.webm**
+   - MTV/90s grunge aesthetic
+   - Fast cuts, youth culture
+
+4. **tiktok_vapes.mp4** / **tiktok_vapes.webm**
+   - Modern social media vaping clips
+   - Bright, colorful, vertical crop acceptable
+
+## Video Specifications:
+- Format: MP4 (H.264) and WebM (VP9) for compatibility
+- Max file size: 5MB for loops, 10MB for longer clips
+- Include poster images (JPG) with same base name
+- Use muted audio tracks or no audio
+
+## Optimization Tools:
+- FFmpeg for conversion and compression
+- HandBrake for batch processing
+- Online tools: CloudConvert, Online-Convert
+
+Replace this file once videos are added.

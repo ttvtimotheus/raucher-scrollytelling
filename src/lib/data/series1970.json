@@ -1,0 +1,11 @@
+{
+  "_comment": "Schema: { year: number, percent: number (percentage of adults smoking) }",
+  "data": [
+    { "year": 1960, "percent": 55 },
+    { "year": 1962, "percent": 62 },
+    { "year": 1964, "percent": 67 },
+    { "year": 1966, "percent": 70 },
+    { "year": 1968, "percent": 72 },
+    { "year": 1970, "percent": 71 }
+  ]
+}

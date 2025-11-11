@@ -1,0 +1,16 @@
+{
+  "_comment": "Schema: { year: number, women: number (percentage of female smokers), men: number (percentage of male smokers) }",
+  "data": [
+    { "year": 1970, "women": 28, "men": 52 },
+    { "year": 1972, "women": 31, "men": 51 },
+    { "year": 1974, "women": 34, "men": 50 },
+    { "year": 1976, "women": 37, "men": 49 },
+    { "year": 1978, "women": 40, "men": 48 },
+    { "year": 1980, "women": 42, "men": 46 },
+    { "year": 1982, "women": 43, "men": 45 },
+    { "year": 1984, "women": 44, "men": 44 },
+    { "year": 1986, "women": 44, "men": 43 },
+    { "year": 1988, "women": 43, "men": 42 },
+    { "year": 1990, "women": 42, "men": 41 }
+  ]
+}
