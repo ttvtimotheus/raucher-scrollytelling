@@ -4,6 +4,8 @@
 	import BirthYearControl from '$lib/components/BirthYearControl.svelte';
 	import DecadeSection from '$lib/components/DecadeSection.svelte';
 	import ChartWrapper from '$lib/components/ChartWrapper.svelte';
+	import Interlude from '$lib/components/Interlude.svelte';
+	import NarrativeBridge from '$lib/components/NarrativeBridge.svelte';
 	import { decades } from '$lib/data/decades';
 
 	let mounted = false;
@@ -21,13 +23,82 @@
 	</section>
 
 	{#if mounted}
-		{#each decades as section, i}
-			<DecadeSection 
-				{section} 
-				chartComponent={ChartWrapper}
-				layout={i % 2 === 0 ? 'left' : 'right'}
-			/>
-		{/each}
+		<!-- 1950er: Visuelle Szene -->
+		<DecadeSection 
+			section={decades[0]} 
+			chartComponent={ChartWrapper}
+			layout="left"
+		/>
+		
+		<!-- Bridge: 1950er Zusammenfassung -->
+		<NarrativeBridge 
+			title="Die Geburt einer Ikone"
+			body="<p>In den 1950ern stieg der Zigarettenkonsum dramatisch. Aber das war kein Zufall.</p><p>Die Tabakindustrie erschuf den <strong>Marlboro Mann</strong> – eine Figur, die Freiheit, Männlichkeit und Unabhängigkeit verkörperte. Was niemand wußte: <em>Jede dieser Werbefiguren starb später an Lungenkrebs</em>.</p>"
+			highlight="Sie haben Freiheit versprochen. Und Abhängigkeit verkauft."
+		/>
+		
+		<!-- 1970er: Daten -->
+		<DecadeSection 
+			section={decades[1]} 
+			chartComponent={ChartWrapper}
+			layout="right"
+		/>
+		
+		<!-- Bridge: 1970er Kontext -->
+		<NarrativeBridge 
+			title="Die ersten Warnungen"
+			body="<p>In den 1970ern begannen Gesundheitswarnungen auf Zigarettenpackungen zu erscheinen. Die Industrie reagierte nicht mit Rückzug, sondern mit <strong>noch aggressiverer Werbung</strong>.</p><p>Fast die Hälfte aller Erwachsenen rauchte regelmäßig. Zigaretten waren nicht nur ein Produkt – sie waren Teil der Identität.</p>"
+			highlight="Die Zigarette versprach nicht nur einen Moment. Sie versprach, wer du sein könntest."
+		/>
+		
+		<!-- 1980er: Visuelle Szene -->
+		<DecadeSection 
+			section={decades[2]} 
+			chartComponent={ChartWrapper}
+			layout="left"
+		/>
+		
+		<!-- Bridge: 1980er Strategie -->
+		<NarrativeBridge 
+			title="Die Emanzipation als Marketingstrategie"
+			body="<p>Die 1980er brachten eine neue Zielgruppe: <strong>Frauen</strong>. 'You've Come a Long Way, Baby' war mehr als ein Slogan – es war eine Bewegung.</p><p>Die Industrie verkaufte Zigaretten als Symbol der Emanzipation. Der Anteil rauchender Frauen stieg dramatisch, während Männer langsam zurückgingen.</p>"
+			highlight="Was wie Feminismus aussah, war Manipulation."
+		/>
+		
+		<!-- 1990er: Daten -->
+		<DecadeSection 
+			section={decades[3]} 
+			chartComponent={ChartWrapper}
+			layout="right"
+		/>
+		
+		<!-- Bridge: 1990er Youth Culture -->
+		<NarrativeBridge 
+			title="Die coole Rebellion"
+			body="<p>In den 1990ern fokussierte sich die Werbung auf <strong>Teenager</strong>. Joe Camel wurde zur Ikone einer Generation – cool, rebellisch, unabhängig.</p><p>Die Zahlen sprechen für sich: <em>Jugendliche rauchten in Rekordzahlen</em>. Was als Rebellion gegen das System verkauft wurde, war genau das, was das System wollte.</p>"
+			highlight="Jede Generation glaubt, sie wählt frei. Jede Generation wird gezielt manipuliert."
+		/>
+		
+		<!-- 2000er: Visuelle Szene -->
+		<DecadeSection 
+			section={decades[4]} 
+			chartComponent={ChartWrapper}
+			layout="left"
+		/>
+		
+		<!-- Bridge: 2000er Wandel -->
+		<NarrativeBridge 
+			title="Der Rückzug der Giganten"
+			body="<p>Die 2000er markierten einen Wendepunkt. Werbeverbote wurden stärker, Raucherzahlen sanken, Werbebudgets schrumpften.</p><p>Aber die Industrie gab nicht auf. Sie veränderte nur ihre Strategie: <strong>Neue Produkte, neue Versprechen</strong>.</p>"
+			highlight="Das Spiel blieb gleich. Nur die Regeln änderten sich."
+		/>
+		
+		<!-- 2010er/2020er: Finale Daten -->
+		<DecadeSection 
+			section={decades[5]} 
+			chartComponent={ChartWrapper}
+			layout="right"
+		/>
 	{/if}
 
 	<section class="finale-section">
