@@ -21,8 +21,12 @@
 	</section>
 
 	{#if mounted}
-		{#each decades as section}
-			<DecadeSection {section} chartComponent={ChartWrapper} />
+		{#each decades as section, i}
+			<DecadeSection 
+				{section} 
+				chartComponent={ChartWrapper}
+				layout={i % 2 === 0 ? 'left' : 'right'}
+			/>
 		{/each}
 	{/if}
 

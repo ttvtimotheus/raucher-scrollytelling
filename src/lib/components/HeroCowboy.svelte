@@ -1,32 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import lottie from 'lottie-web';
 	import VideoLooper from './VideoLooper.svelte';
-
-	let lottieContainer: HTMLDivElement;
-	let animationInstance: any;
-
-	onMount(() => {
-		if (lottieContainer) {
-			try {
-				animationInstance = lottie.loadAnimation({
-					container: lottieContainer,
-					renderer: 'svg',
-					loop: false,
-					autoplay: true,
-					path: '/lottie/title_morph.json'
-				});
-			} catch (e) {
-				console.error('Lottie load failed:', e);
-			}
-		}
-
-		return () => {
-			if (animationInstance) {
-				animationInstance.destroy();
-			}
-		};
-	});
 
 	function scrollToNext() {
 		const nextSection = document.querySelector('#birth-year-section');
@@ -59,23 +32,21 @@
 	</div>
 
 	<div class="hero-content">
-		<div class="lottie-title" bind:this={lottieContainer}></div>
+		<h1 class="hero-title">
+			<span class="title-line">Der Marlboro Mann</span><br/>
+			<span class="title-line">war eine Lüge</span>
+		</h1>
 		
-		<div class="text-overlay">
-			<p class="line">Er war stark. Frei. Unabhängig.</p>
-			<p class="line">Und er war nie echt.</p>
-			<p class="line emphasis">
-				Bevor du deine erste Zigarette gesehen hast, hatte jemand längst entschieden, wie du über
-				sie denken wirst.
-			</p>
-		</div>
+		<p class="hero-subtitle">
+			Die Geschichte, wie die Tabakindustrie<br class="desktop-break"/> eine Generation manipulierte
+		</p>
 
-		<button class="cta-scroll" on:click={scrollToNext} aria-label="Scroll to next section">
-			<span>Scrolle weiter</span>
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-				<path d="M12 5v14M19 12l-7 7-7-7" stroke-width="2" stroke-linecap="round" />
+		<div class="scroll-hint" on:click={scrollToNext} on:keydown={(e) => e.key === 'Enter' && scrollToNext()} role="button" tabindex="0">
+			<span>Scroll</span>
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
 			</svg>
-		</button>
+		</div>
 	</div>
 </section>
 
@@ -159,15 +130,15 @@
 		position: relative;
 		z-index: 3;
 		text-align: center;
-		max-width: 1200px;
+		max-width: 1100px;
 		width: 100%;
-		animation: fadeInUp 1.2s ease-out 0.3s both;
+		animation: fadeInUp 1.5s ease-out 0.5s both;
 	}
 
 	@keyframes fadeInUp {
 		from {
 			opacity: 0;
-			transform: translateY(30px);
+			transform: translateY(40px);
 		}
 		to {
 			opacity: 1;
@@ -175,84 +146,62 @@
 		}
 	}
 
-	.lottie-title {
-		width: 100%;
-		max-width: 600px;
-		height: 200px;
-		margin: 0 auto 3rem;
-	}
-
-	.text-overlay {
-		margin-bottom: 4rem;
-	}
-
-	.subtitle {
-		font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-		color: rgba(245, 245, 245, 0.95);
-		margin-bottom: 4rem;
-		font-weight: 400;
-		line-height: 1.4;
+	.hero-title {
+		font-size: clamp(3rem, 12vw, 7rem);
+		font-weight: 900;
+		line-height: 0.95;
+		letter-spacing: -0.03em;
+		color: #ffffff;
+		margin: 0 0 1.5rem;
 		text-shadow: 
-			1px 1px 3px rgba(0, 0, 0, 0.9),
-			2px 2px 15px rgba(0, 0, 0, 0.6);
-		max-width: 800px;
-		margin-left: auto;
-		margin-right: auto;
+			3px 3px 6px rgba(0, 0, 0, 0.9),
+			6px 6px 25px rgba(0, 0, 0, 0.4);
 	}
 
-	.line {
-		font-size: clamp(1.5rem, 4vw, 2.5rem);
-		font-weight: 700;
-		margin: 0 0 1rem;
-		line-height: 1.3;
-		color: #f5f5f5;
+	.title-line {
+		display: inline-block;
+		white-space: nowrap;
+	}
+
+	.hero-subtitle {
+		font-size: clamp(1.25rem, 3vw, 2rem);
+		font-weight: 400;
+		line-height: 1.5;
+		color: rgba(255, 255, 255, 0.9);
+		margin: 0 0 4rem;
 		text-shadow: 
 			2px 2px 4px rgba(0, 0, 0, 0.9),
-			4px 4px 20px rgba(0, 0, 0, 0.5);
-		letter-spacing: -0.01em;
+			3px 3px 15px rgba(0, 0, 0, 0.5);
+	}
 
-		&.emphasis {
-			font-size: clamp(1.25rem, 3vw, 1.875rem);
-			font-weight: 600;
-			color: #ff8787;
-			margin-top: 1.5rem;
-			line-height: 1.5;
+	.desktop-break {
+		display: none;
+
+		@media (min-width: 768px) {
+			display: inline;
 		}
 	}
 
-	.cta-scroll {
+	.scroll-hint {
 		display: inline-flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 1rem 2rem;
-		background: rgba(255, 107, 107, 0.9);
-		color: #fff;
-		border: none;
-		border-radius: 50px;
-		font-size: 1rem;
-		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.875rem;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
 		cursor: pointer;
 		transition: all 0.3s ease;
-		animation: pulse 2s infinite;
 
 		&:hover {
-			background: #ff6b6b;
-			transform: translateY(4px);
+			color: rgba(255, 255, 255, 0.9);
+			transform: translateY(3px);
 		}
 
 		svg {
-			animation: bounce 2s infinite;
-		}
-	}
-
-	@keyframes pulse {
-		0%,
-		100% {
-			box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
-		}
-		50% {
-			box-shadow: 0 0 0 20px rgba(255, 107, 107, 0);
+			animation: bounce 2s ease-in-out infinite;
 		}
 	}
 
@@ -262,34 +211,31 @@
 			transform: translateY(0);
 		}
 		50% {
-			transform: translateY(5px);
+			transform: translateY(8px);
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.cta-scroll {
+		.hero-content {
 			animation: none;
+		}
 
-			svg {
-				animation: none;
-			}
+		.scroll-hint svg {
+			animation: none;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.hero-title {
+			margin-bottom: 1rem;
+		}
+
+		.hero-subtitle {
+			margin-bottom: 3rem;
 		}
 	}
 
 	@media (max-width: 640px) {
-		.lottie-title {
-			height: 150px;
-			margin-bottom: 2rem;
-		}
-
-		.line {
-			font-size: 1.125rem;
-
-			&.emphasis {
-				font-size: 1.375rem;
-			}
-		}
-
 		.video-source {
 			bottom: 1rem;
 			left: 1rem;

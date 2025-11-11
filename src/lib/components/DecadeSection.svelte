@@ -6,6 +6,7 @@
 
 	export let section: DecadeSection;
 	export let chartComponent: any = null;
+	export let layout: 'left' | 'right' | 'full' | 'stacked' = 'left';
 
 	let sectionElement: HTMLElement;
 	let isVisible = true;
@@ -22,6 +23,10 @@
 	id={section.id}
 	class="decade-section"
 	class:visible={isVisible}
+	class:layout-left={layout === 'left'}
+	class:layout-right={layout === 'right'}
+	class:layout-full={layout === 'full'}
+	class:layout-stacked={layout === 'stacked'}
 	bind:this={sectionElement}
 >
 	<div class="section-grid">
@@ -75,6 +80,15 @@
 		}
 	}
 
+	// Alternierende Hintergrundfarben
+	.decade-section:nth-child(odd) {
+		background: #0f0f0f;
+	}
+
+	.decade-section:nth-child(even) {
+		background: #050505;
+	}
+
 	.section-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -89,6 +103,43 @@
 			grid-template-columns: 1fr;
 			gap: 2rem;
 		}
+	}
+
+	// Layout Varianten
+	.layout-right .section-grid {
+		grid-template-columns: 1.2fr 1fr;
+		.narrative-column {
+			order: 2;
+		}
+		.media-column {
+			order: 1;
+		}
+	}
+
+	.layout-full .section-grid {
+		grid-template-columns: 1fr;
+		max-width: 1600px;
+		gap: 3rem;
+	}
+
+	.layout-stacked .section-grid {
+		grid-template-columns: 1fr;
+		max-width: 900px;
+		gap: 2rem;
+		
+		.sticky-content {
+			max-width: 700px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		.chart-container {
+			margin: 0 auto;
+		}
+	}
+
+	.layout-full .narrative-column {
+		max-width: 600px;
 	}
 
 	.narrative-column {

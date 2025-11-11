@@ -25,45 +25,47 @@
 	onMount(() => {
 		if (!chartContainer) return;
 
-		try {
-			switch (section.chartType) {
-				case '1950':
-					chartInstance = initChart1950(chartContainer, series1950.data);
-					break;
-				case '1970':
-					chartInstance = initChart1970(chartContainer, series1970.data);
-					break;
-				case '1980':
-					chartInstance = initChart1970(chartContainer, series1970.data);
-					break;
-				case '1990':
-					chartInstance = initChart1990(chartContainer, series1990.data);
-					break;
-				case '2000':
-					chartInstance = initChart2000(chartContainer, series2000.data);
-					break;
-				case '2010':
-					chartInstance = initChart2010(chartContainer, series2010.data);
-					break;
-				case 'world':
-					chartInstance = initWorldDeaths(chartContainer, worldDeaths);
-					break;
-			}
+		(async () => {
+			try {
+				switch (section.chartType) {
+					case '1950':
+						chartInstance = initChart1950(chartContainer, series1950.data);
+						break;
+					case '1970':
+						chartInstance = initChart1970(chartContainer, series1970.data);
+						break;
+					case '1980':
+						chartInstance = initChart1970(chartContainer, series1970.data);
+						break;
+					case '1990':
+						chartInstance = initChart1990(chartContainer, series1990.data);
+						break;
+					case '2000':
+						chartInstance = initChart2000(chartContainer, series2000.data);
+						break;
+					case '2010':
+						chartInstance = initChart2010(chartContainer, series2010.data);
+						break;
+					case 'world':
+						chartInstance = await initWorldDeaths(chartContainer, worldDeaths);
+						break;
+				}
 
-			if (chartInstance) {
-				scrollTrigger = createSectionScroll(
-					section.id,
-					(progress) => {
-						if (chartInstance && chartInstance.update) {
-							chartInstance.update(progress);
-						}
-					},
-					true
-				);
+				if (chartInstance) {
+					scrollTrigger = createSectionScroll(
+						section.id,
+						(progress) => {
+							if (chartInstance && chartInstance.update) {
+								chartInstance.update(progress);
+							}
+						},
+						true
+					);
+				}
+			} catch (error) {
+				console.error('Chart initialization failed:', error);
 			}
-		} catch (error) {
-			console.error('Chart initialization failed:', error);
-		}
+		})();
 
 		return () => {
 			if (chartInstance && chartInstance.destroy) {

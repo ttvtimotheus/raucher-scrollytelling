@@ -22,10 +22,10 @@ interface WorldDeathsInstance {
 	destroy: () => void;
 }
 
-export function initWorldDeaths(
+export async function initWorldDeaths(
 	container: HTMLElement,
 	data: WorldDeathsData
-): WorldDeathsInstance {
+): Promise<WorldDeathsInstance> {
 	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 	const width = container.clientWidth - margin.left - margin.right;
 	const height = Math.min(600, container.clientHeight) - margin.top - margin.bottom;
@@ -60,6 +60,39 @@ export function initWorldDeaths(
 		.center([0, 20])
 		.scale(width / 6.5)
 		.translate([width / 2, height / 2]);
+
+	const path = d3.geoPath().projection(projection);
+
+	// Lade und zeichne Weltkarte mit echten Ländergrenzen
+	try {
+		// Natural Earth 110m Länder (niedrige Auflösung für schnelles Laden)
+		const geoData: any = await d3.json('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson');
+		
+		// Zeichne Länder
+		g.append('g')
+			.attr('class', 'countries')
+			.selectAll('path')
+			.data(geoData.features)
+			.enter()
+			.append('path')
+			.attr('d', (d: any) => path(d))
+			.attr('fill', '#1a1a1a')
+			.attr('stroke', '#3a3a3a')
+			.attr('stroke-width', 0.5);
+	} catch (error) {
+		console.warn('Could not load world map data, using graticule fallback:', error);
+		
+		// Fallback zu Graticule wenn Laden fehlschlägt
+		const graticule = d3.geoGraticule();
+		g.append('path')
+			.datum(graticule)
+			.attr('class', 'graticule')
+			.attr('d', path as any)
+			.attr('fill', 'none')
+			.attr('stroke', '#2a2a2a')
+			.attr('stroke-width', 0.5)
+			.attr('opacity', 0.3);
+	}
 
 	const sizeScale = d3
 		.scaleSqrt()
