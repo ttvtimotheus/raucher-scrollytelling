@@ -38,7 +38,24 @@
 
 <section id="hero-cowboy" class="hero-cowboy">
 	<div class="video-background">
-		<VideoLooper videoSlug="cowboy_loop" />
+		<VideoLooper 
+			videoSlug="smoking_commercial_website_intro" 
+			poster="/video/smoking_commercial_website_intro_poster.jpg" 
+		/>
+		<a 
+			href="https://www.industrydocuments.ucsf.edu/docs/ljwl0154/" 
+			target="_blank" 
+			rel="noopener noreferrer"
+			class="video-source"
+			aria-label="Video source: UCSF Industry Documents Library"
+		>
+			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="12" cy="12" r="10"></circle>
+				<line x1="12" y1="16" x2="12" y2="12"></line>
+				<line x1="12" y1="8" x2="12.01" y2="8"></line>
+			</svg>
+			<span>Quelle: UCSF (1955–1970) • 08:00–09:00</span>
+		</a>
 	</div>
 
 	<div class="hero-content">
@@ -65,12 +82,14 @@
 <style lang="scss">
 	.hero-cowboy {
 		position: relative;
-		height: 100vh;
-		width: 100%;
-		overflow: hidden;
+		min-height: 100vh;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		justify-content: center;
+		align-items: center;
+		background: #000;
+		overflow: hidden;
+		padding: 2rem;
 	}
 
 	.video-background {
@@ -79,7 +98,8 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: 0;
+		overflow: hidden;
+		z-index: 1;
 
 		&::after {
 			content: '';
@@ -88,16 +108,71 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+			background: linear-gradient(
+				to bottom,
+				rgba(0, 0, 0, 0.1) 0%,
+				rgba(0, 0, 0, 0.5) 70%,
+				rgba(0, 0, 0, 0.8) 100%
+			);
+			pointer-events: none;
+			z-index: 1;
+		}
+	}
+
+	.video-source {
+		position: absolute;
+		bottom: 1.5rem;
+		left: 1.5rem;
+		z-index: 2;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 0.875rem;
+		background: rgba(0, 0, 0, 0.6);
+		backdrop-filter: blur(8px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 6px;
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 0.75rem;
+		text-decoration: none;
+		transition: all 0.3s ease;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.75);
+			color: rgba(255, 255, 255, 1);
+			border-color: rgba(255, 255, 255, 0.2);
+			transform: translateY(-2px);
+		}
+
+		svg {
+			flex-shrink: 0;
+			opacity: 0.8;
+		}
+
+		span {
+			font-weight: 500;
+			letter-spacing: 0.01em;
 		}
 	}
 
 	.hero-content {
 		position: relative;
-		z-index: 1;
+		z-index: 3;
 		text-align: center;
-		padding: 2rem;
-		max-width: 900px;
+		max-width: 1200px;
+		width: 100%;
+		animation: fadeInUp 1.2s ease-out 0.3s both;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	.lottie-title {
@@ -111,17 +186,37 @@
 		margin-bottom: 4rem;
 	}
 
+	.subtitle {
+		font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+		color: rgba(245, 245, 245, 0.95);
+		margin-bottom: 4rem;
+		font-weight: 400;
+		line-height: 1.4;
+		text-shadow: 
+			1px 1px 3px rgba(0, 0, 0, 0.9),
+			2px 2px 15px rgba(0, 0, 0, 0.6);
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 	.line {
-		font-size: clamp(1.25rem, 3vw, 1.75rem);
-		line-height: 1.6;
-		margin-bottom: 1rem;
-		text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+		font-size: clamp(1.5rem, 4vw, 2.5rem);
+		font-weight: 700;
+		margin: 0 0 1rem;
+		line-height: 1.3;
+		color: #f5f5f5;
+		text-shadow: 
+			2px 2px 4px rgba(0, 0, 0, 0.9),
+			4px 4px 20px rgba(0, 0, 0, 0.5);
+		letter-spacing: -0.01em;
 
 		&.emphasis {
-			font-size: clamp(1.5rem, 3.5vw, 2rem);
+			font-size: clamp(1.25rem, 3vw, 1.875rem);
 			font-weight: 600;
 			color: #ff8787;
-			margin-top: 2rem;
+			margin-top: 1.5rem;
+			line-height: 1.5;
 		}
 	}
 
@@ -192,6 +287,18 @@
 
 			&.emphasis {
 				font-size: 1.375rem;
+			}
+		}
+
+		.video-source {
+			bottom: 1rem;
+			left: 1rem;
+			font-size: 0.65rem;
+			padding: 0.4rem 0.7rem;
+
+			svg {
+				width: 12px;
+				height: 12px;
 			}
 		}
 	}

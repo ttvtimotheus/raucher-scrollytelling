@@ -60,5 +60,6 @@
 		height: 100%;
 		object-fit: cover;
 		display: block;
+		filter: saturate(1.1) contrast(1.05);
 	}
 </style>
