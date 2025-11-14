@@ -59,14 +59,23 @@ export function Interlude({ quote, author, type = 'quote' }: InterludeProps) {
 
   return (
     <section ref={interludeRef} className={`relative flex min-h-screen items-center justify-center px-8 py-16 ${bgClass}`}>
-      <div ref={contentRef} className="w-full max-w-4xl text-center">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/4 top-1/3 h-96 w-96 animate-pulse rounded-full bg-smoke-500/5 blur-3xl" style={{ animationDuration: '6s' }} />
+      </div>
+
+      <div ref={contentRef} className="relative w-full max-w-5xl text-center">
         {type === 'quote' && (
           <blockquote className="space-y-8">
-            <p className="text-balance text-[clamp(2rem,5vw,4rem)] font-light italic leading-tight text-white/95 drop-shadow-[2px_2px_8px_rgba(0,0,0,0.9)]">
+            <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-smoke-500/20">
+              <span className="font-display text-4xl text-smoke-400">&ldquo;</span>
+            </div>
+            
+            <p className="font-display text-balance text-[clamp(2rem,5vw,4rem)] font-light italic leading-tight text-white/95" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.9)' }}>
               {quote}
             </p>
+            
             {author && (
-              <cite className="block text-[clamp(1.25rem,2vw,1.75rem)] font-normal not-italic text-white/60">
+              <cite className="block font-sans text-[clamp(1.25rem,2vw,1.75rem)] font-normal not-italic text-white/60">
                 — {author}
               </cite>
             )}

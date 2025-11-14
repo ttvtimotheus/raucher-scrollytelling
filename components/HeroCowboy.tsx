@@ -110,12 +110,22 @@ export function HeroCowboy() {
       ref={heroSectionRef}
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black px-6 py-10 text-center md:px-12"
     >
+      {/* Grain Overlay - Pudding Signature */}
+      <div className="pointer-events-none absolute inset-0 z-[2] opacity-[0.15] mix-blend-overlay">
+        <div className="grain-animation h-full w-full" />
+      </div>
+
       <div ref={videoBackgroundRef} className="absolute inset-0 z-[1]">
         <VideoLooper
           videoSlug="smoking_commercial_website_intro"
           poster="/video/smoking_commercial_website_intro_poster.jpg"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/80" />
+        {/* Improved Vignette */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.4)_60%,rgba(0,0,0,0.9)_100%)]" />
+        {/* Chromatic Aberration */}
+        <div className="pointer-events-none absolute inset-0 mix-blend-screen opacity-20">
+          <div className="h-full w-full bg-[radial-gradient(circle,#ff0000_0%,transparent_2%,transparent_98%,#0000ff_100%)]" />
+        </div>
         <a
           href="https://www.industrydocuments.ucsf.edu/docs/ljwl0154/"
           target="_blank"
@@ -132,17 +142,19 @@ export function HeroCowboy() {
         </a>
       </div>
 
-      <div ref={heroContentRef} className="relative z-[3] w-full max-w-[1100px] space-y-8">
-        <div className="voice-over space-y-4 text-white drop-shadow-[2px_2px_20px_rgba(0,0,0,0.6)]">
+      <div ref={heroContentRef} className="relative z-[3] w-full max-w-[1100px] space-y-12">
+        <div className="voice-over space-y-6 text-white">
           <p
             ref={line1Ref}
-            className="text-balance text-[clamp(1.5rem,3vw,2.25rem)] font-medium italic text-white/95"
+            className="text-balance font-display text-[clamp(1.5rem,3vw,2.25rem)] font-medium italic leading-snug text-white/90"
+            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}
           >
             Er war stark. Frei. Unabhängig.
           </p>
           <p
             ref={line2Ref}
-            className="text-balance text-[clamp(1.5rem,3vw,2.25rem)] font-medium italic text-white/95"
+            className="text-balance font-display text-[clamp(1.5rem,3vw,2.25rem)] font-medium italic leading-snug text-white/90"
+            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}
           >
             Und er war nie echt.
           </p>
@@ -150,31 +162,30 @@ export function HeroCowboy() {
 
         <h1
           ref={line3Ref}
-          className="hero-title text-balance text-[clamp(3rem,12vw,7rem)] font-black leading-[0.95] tracking-tight text-white drop-shadow-[3px_3px_25px_rgba(0,0,0,0.4)]"
+          className="hero-title font-headline text-[clamp(3rem,10vw,8rem)] font-bold leading-[1.05] tracking-tighter pb-4"
         >
-          <span className="block whitespace-nowrap">Der Marlboro Mann</span>
-          <span className="block whitespace-nowrap">war eine Lüge</span>
+          <span className="block text-white/90 pb-2" style={{ textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+            Der Marlboro Mann
+          </span>
+          <span className="block bg-gradient-to-r from-smoke-400 via-smoke-500 to-smoke-600 bg-clip-text text-transparent pb-2">
+            war eine Lüge
+          </span>
         </h1>
 
+        {/* Scroll Indicator */}
         <div
           role="button"
           tabIndex={0}
           onClick={scrollToNext}
           onKeyDown={handleKeyDown}
-          className="mx-auto inline-flex cursor-pointer flex-col items-center gap-2 uppercase tracking-[0.4em] text-white/60 transition hover:text-white focus:outline-none"
+          className="mx-auto inline-flex cursor-pointer flex-col items-center gap-3 focus:outline-none"
         >
-          <span>Scroll</span>
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="animate-bounce"
-          >
-            <path d="M12 5v14M19 12l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/60 transition-colors hover:text-white">
+            Scroll to explore
+          </span>
+          <div className="relative h-12 w-[2px] overflow-hidden rounded-full bg-white/20">
+            <div className="absolute inset-0 animate-slide-down bg-gradient-to-b from-transparent via-white to-transparent" />
+          </div>
         </div>
       </div>
     </section>

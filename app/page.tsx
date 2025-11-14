@@ -98,33 +98,74 @@ export default function HomePage() {
         </>
       )}
 
-      <section className="finale-section flex min-h-screen items-center justify-center bg-gradient-to-b from-bg-dark to-[#1a1a2a] px-8 py-16 text-center">
-        <div className="container-narrow space-y-12">
-          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight">
-            Es war nie deine Entscheidung allein.
-          </h2>
-          <p className="text-[clamp(1.5rem,4vw,2.5rem)] font-semibold text-accent">
-            Aber du kannst sie dir zurückholen.
-          </p>
+      <section className="finale-section relative min-h-screen overflow-hidden bg-gradient-to-b from-bg-dark via-[#1a1a2a] to-bg-dark">
+        {/* Cinematic Vignette */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
+        
+        {/* Floating Particles */}
+        <div className="pointer-events-none absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute h-1 w-1 rounded-full bg-white/20 animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${5 + Math.random() * 10}s`,
+              }}
+            />
+          ))}
+        </div>
 
-          <div className="cta-buttons flex flex-wrap justify-center gap-6">
-            <a href="/" className="button-secondary rounded-full border-2 border-neutral-700 bg-transparent px-12 py-5 text-lg font-semibold text-text-primary transition hover:border-accent hover:text-accent">
-              Nochmal ansehen
-            </a>
-            <a
-              href="https://www.rauchfrei-info.de"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button-primary rounded-full bg-accent px-12 py-5 text-lg font-semibold text-white shadow-[0_10px_25px_rgba(255,107,107,0.3)] transition hover:-translate-y-1 hover:bg-accent-subtle"
-            >
-              Frei atmen
-            </a>
-          </div>
+        <div className="relative flex min-h-screen flex-col items-center justify-center px-8 py-16 text-center">
+          <div className="max-w-4xl space-y-12">
+            {/* Main Message */}
+            <h2 className="font-headline text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.95] tracking-tighter">
+              <span className="block text-white/90">
+                Es war nie deine
+              </span>
+              <span className="block bg-gradient-to-r from-white via-smoke-400 to-white bg-clip-text text-transparent">
+                Entscheidung allein.
+              </span>
+            </h2>
+            
+            {/* Subtext */}
+            <p className="font-display text-[clamp(1.75rem,4vw,3rem)] font-semibold text-smoke-400">
+              Aber du kannst sie dir zurückholen.
+            </p>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <a
+                href="https://www.rauchfrei-info.de"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shine-effect group relative overflow-hidden rounded-full bg-gradient-to-r from-smoke-500 to-smoke-600 px-12 py-6 font-semibold text-white shadow-2xl shadow-smoke-500/50 transition-all hover:scale-105 hover:shadow-smoke-500/70"
+              >
+                <span className="relative z-10 text-lg">Frei atmen</span>
+              </a>
+              
+              <a 
+                href="/" 
+                className="glass-panel rounded-full px-12 py-6 text-lg font-semibold text-white/90 transition-all hover:bg-white/10"
+              >
+                Nochmal ansehen
+              </a>
+            </div>
 
-          <div className="data-link mt-8">
-            <a href="/daten" className="text-text-secondary underline transition hover:text-text-primary">
-              Daten und Methodik
-            </a>
+            {/* Data Link */}
+            <div className="mt-12">
+              <a 
+                href="/daten" 
+                className="group inline-flex items-center gap-2 font-mono text-sm uppercase tracking-wider text-text-secondary transition hover:text-text-primary"
+              >
+                <span>Daten und Methodik</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform group-hover:translate-x-1">
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>

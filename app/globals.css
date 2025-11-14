@@ -1,15 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Crimson+Pro:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'Inter Variable', 'Inter', sans-serif;
+  }
+}
+
 :root {
-  font-family: theme("fontFamily.base");
+  font-family: theme("fontFamily.sans");
   color: theme("colors.text-primary");
   background-color: theme("colors.bg-dark");
 }
 
 html {
   scroll-behavior: smooth;
+  font-feature-settings: "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -68,4 +79,76 @@ h6 {
   margin-right: auto;
   padding-left: theme("spacing.md");
   padding-right: theme("spacing.md");
+}
+
+@layer utilities {
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(240, 82, 82, 0.3);
+  }
+  
+  .text-shimmer {
+    @apply bg-gradient-to-r from-white via-smoke-400 to-white bg-[length:200%_100%] bg-clip-text text-transparent;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  .blur-in {
+    animation: blurIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+  
+  @keyframes blurIn {
+    from {
+      filter: blur(20px);
+      opacity: 0;
+    }
+    to {
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+  
+  .grain-animation {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(10) infinite;
+  }
+  
+  .magnetic-button {
+    @apply relative transition-transform duration-200;
+  }
+  
+  .glass-panel {
+    @apply border border-glass-border bg-glass backdrop-blur-xl;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transition: transform 0.7s;
+  }
+  
+  .shine-effect:hover::after {
+    transform: translateX(200%);
+  }
 }

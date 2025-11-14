@@ -30,8 +30,13 @@ export function DecadeSection({ section, layout = 'left', colorTheme = '1950' }:
       data-decade={colorTheme}
       className={`decade-section relative min-h-screen ${bgClass} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
+      {/* Spotlight Effect */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="h-[600px] w-[600px] bg-gradient-radial from-smoke-500/5 to-transparent blur-3xl" />
+      </div>
+
       <div
-        className={`section-grid mx-auto grid min-h-screen max-w-[1400px] items-center gap-8 p-8 lg:gap-16 ${
+        className={`section-grid relative mx-auto grid min-h-screen max-w-[1400px] items-center gap-8 p-8 lg:gap-16 ${
           layout === 'right'
             ? 'lg:grid-cols-[1.2fr_1fr]'
             : layout === 'full' || layout === 'stacked'
@@ -40,11 +45,16 @@ export function DecadeSection({ section, layout = 'left', colorTheme = '1950' }:
         }`}
       >
         <div className={`narrative-column relative ${layout === 'right' ? 'lg:order-2' : ''}`}>
-          <div className="sticky-content rounded-xl border border-neutral-800 bg-bg-section/80 p-8 backdrop-blur">
-            <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-accent">
-              {section.decade}
-            </span>
-            <h2 className="mb-2 text-[clamp(2rem,4vw,3rem)] font-bold">{section.title}</h2>
+          <div className="sticky-content glass-panel rounded-2xl p-10">
+            {/* Era Badge */}
+            <div className="mb-6 inline-flex items-center gap-3">
+              <div className="h-[2px] w-8 bg-gradient-to-r from-transparent to-smoke-500" />
+              <span className="font-mono text-xs uppercase tracking-[0.3em] text-smoke-400">
+                {section.decade}
+              </span>
+            </div>
+            
+            <h2 className="mb-3 font-display text-[clamp(2rem,4vw,3rem)] font-bold leading-tight">{section.title}</h2>
             <h3 className="mb-8 text-[clamp(1.25rem,2vw,1.5rem)] font-normal text-text-secondary">
               {section.subtitle}
             </h3>
@@ -60,24 +70,34 @@ export function DecadeSection({ section, layout = 'left', colorTheme = '1950' }:
             {hint && (
               <div
                 role="note"
-                className="mt-8 flex items-start gap-4 rounded border-l-4 border-accent bg-accent/10 p-4"
+                className="mt-8 flex items-start gap-4 rounded-xl border border-smoke-500/30 bg-smoke-500/10 p-6 backdrop-blur"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="mt-1 flex-shrink-0">
-                  <circle cx="12" cy="12" r="10" strokeWidth="2" />
-                  <path d="M12 16v-4M12 8h.01" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-                <p className="text-accent-subtle">{hint}</p>
+                <div className="rounded-full bg-smoke-500/20 p-2">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-smoke-400">
+                    <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                    <path d="M12 16v-4M12 8h.01" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <p className="text-smoke-400">{hint}</p>
               </div>
             )}
           </div>
         </div>
 
         <div className={`media-column flex items-center justify-center ${layout === 'right' ? 'lg:order-1' : ''}`}>
-          <div className="chart-container w-full">
-            <p className="mb-8 rounded-lg border-l-4 border-accent bg-bg-section/60 p-6 text-lg leading-relaxed text-neutral-300">
-              {section.chartExplainer}
-            </p>
-            <div className="chart-wrapper rounded-xl border border-neutral-800 bg-bg-section p-8">
+          <div className="chart-container w-full space-y-6">
+            {/* Chart Context */}
+            <div className="glass-panel rounded-xl border-l-4 border-smoke-500 p-6">
+              <p className="font-mono text-xs uppercase tracking-widest text-smoke-400 mb-3">
+                Die Daten zeigen
+              </p>
+              <p className="text-lg leading-relaxed text-neutral-300">
+                {section.chartExplainer}
+              </p>
+            </div>
+            
+            {/* Chart */}
+            <div className="glass-panel rounded-2xl p-8">
               <ChartWrapper section={section} />
             </div>
           </div>
