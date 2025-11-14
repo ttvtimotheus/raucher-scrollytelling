@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import type { DecadeSection as DecadeSectionType } from '@/lib/data/decades';
 import { getBirthYearHint, useBirthYear } from '@/lib/context/BirthYearContext';
 import ChartWrapper from './ChartWrapper';
+import AdPosterShowcase from './AdPosterShowcase';
+import { advertisingData } from '@/lib/data/adPosters';
 
 interface DecadeSectionProps {
   section: DecadeSectionType;
@@ -21,6 +23,7 @@ export function DecadeSection({ section, layout = 'left', colorTheme = '1950' }:
   }, []);
 
   const hint = getBirthYearHint(birthYear, parseInt(section.decade.split('er')[0], 10));
+  const adData = advertisingData[colorTheme];
 
   const bgClass = colorTheme === '1950' || colorTheme === '1980' || colorTheme === '2000' ? 'bg-[#0f0f0f]' : 'bg-[#050505]';
 
@@ -103,6 +106,17 @@ export function DecadeSection({ section, layout = 'left', colorTheme = '1950' }:
           </div>
         </div>
       </div>
+
+      {/* Ad Poster Showcase */}
+      {adData && (
+        <div className="relative mx-auto max-w-[1400px] px-8">
+          <AdPosterShowcase
+            decade={adData.decade}
+            posters={adData.posters}
+            learningPoints={adData.learningPoints}
+          />
+        </div>
+      )}
     </section>
   );
 }
