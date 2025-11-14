@@ -154,16 +154,25 @@ export default function HomePage() {
               </a>
             </div>
 
-            {/* Data Link */}
-            <div className="mt-12">
+            {/* Footer Links */}
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm">
               <a 
                 href="/daten" 
-                className="group inline-flex items-center gap-2 font-mono text-sm uppercase tracking-wider text-text-secondary transition hover:text-text-primary"
+                className="group inline-flex items-center gap-2 font-mono uppercase tracking-wider text-text-secondary transition hover:text-text-primary"
               >
                 <span>Daten und Methodik</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform group-hover:translate-x-1">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
+              </a>
+              
+              <span className="text-text-secondary">•</span>
+              
+              <a 
+                href="/impressum" 
+                className="font-mono uppercase tracking-wider text-text-secondary transition hover:text-text-primary"
+              >
+                Impressum
               </a>
             </div>
           </div>

@@ -252,6 +252,16 @@ export default function DatenPage() {
           <p className="text-sm text-text-secondary">
             Alle Daten dienen Bildungszwecken und sind zum angegebenen Zeitpunkt korrekt.
           </p>
+          
+          <div className="mt-6 flex items-center justify-center gap-6 text-sm">
+            <Link href="/impressum" className="text-text-secondary transition hover:text-white">
+              Impressum
+            </Link>
+            <span className="text-text-secondary">•</span>
+            <Link href="/daten" className="text-text-secondary transition hover:text-white">
+              Daten & Methodik
+            </Link>
+          </div>
         </footer>
       </div>
     </main>
