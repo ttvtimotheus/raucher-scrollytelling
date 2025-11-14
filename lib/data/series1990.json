@@ -1,0 +1,16 @@
+{
+  "_comment": "Schema: { year: number, teenRate: number (percentage of teens 14-18 smoking) }",
+  "data": [
+    { "year": 1990, "teenRate": 22 },
+    { "year": 1991, "teenRate": 24 },
+    { "year": 1992, "teenRate": 26 },
+    { "year": 1993, "teenRate": 28 },
+    { "year": 1994, "teenRate": 30 },
+    { "year": 1995, "teenRate": 32 },
+    { "year": 1996, "teenRate": 34 },
+    { "year": 1997, "teenRate": 35 },
+    { "year": 1998, "teenRate": 34 },
+    { "year": 1999, "teenRate": 33 },
+    { "year": 2000, "teenRate": 31 }
+  ]
+}

@@ -1,83 +1,70 @@
 # Wie du zum Raucher wurdest
 
-A production-grade scrollytelling experience in SvelteKit recreating "Wie du zum Raucher wurdest" in The Pudding style. This interactive piece takes users through seven decades of tobacco advertising and its impact.
+A production-grade scrollytelling experience in Next.js recreating "Wie du zum Raucher wurdest" in The Pudding style. This interactive piece takes users through seven decades of tobacco advertising and its impact.
 
 ## Features
 
 - **Scroll-driven animations** using GSAP ScrollTrigger
 - **Interactive D3.js charts** with accessible fallbacks
-- **Lottie animations** for key morph moments
-- **Video loops** with lazy loading
+- **Video loops** with lazy loading and IntersectionObserver
 - **Birth year personalization** for contextual hints
 - **Fully accessible** with ARIA labels, screen reader support, and reduced motion mode
-- **Mobile-first** responsive design
-- **German language** throughout (no dash punctuation in visible text)
+- **Mobile-first** responsive design with Tailwind CSS
+- **German language** throughout
 
 ## Tech Stack
 
-- **SvelteKit** (v5) with TypeScript
+- **Next.js 14** with App Router and TypeScript
+- **React 18** for UI components
+- **Tailwind CSS** for styling
 - **GSAP** with ScrollTrigger for scroll orchestration
 - **D3.js** (v7) for data visualization
-- **Lottie Web** for precise animation morphs
-- **SASS/SCSS** for styling
-- **Playwright** for testing
+- **Lottie Web** for animation morphs
 - **pnpm** for package management
 
 ## Project Structure
 
 ```
 raucher-scrollytelling/
-├── src/
-│   ├── app.html                 # HTML template
-│   ├── app.d.ts                 # TypeScript declarations
-│   ├── routes/
-│   │   ├── +layout.svelte       # Root layout
-│   │   ├── +page.svelte         # Main scrollytelling page
-│   │   └── daten/
-│   │       └── +page.svelte     # Data and methodology page
-│   └── lib/
-│       ├── charts/              # D3 chart implementations
-│       │   ├── chart1950.ts     # Consumption vs deaths line chart
-│       │   ├── chart1970.ts     # Adult smoking rate bar chart
-│       │   ├── chart1990.ts     # Teen smoking rate line chart
-│       │   ├── chart2000.ts     # Ad spend vs smoking rate
-│       │   ├── chart2010.ts     # Vaping vs cigarettes bars
-│       │   └── worldDeaths.ts   # World deaths map
-│       ├── components/
-│       │   ├── HeroCowboy.svelte
-│       │   ├── BirthYearControl.svelte
-│       │   ├── DecadeSection.svelte
-│       │   ├── ChartWrapper.svelte
-│       │   └── VideoLooper.svelte
-│       ├── data/
-│       │   ├── decades.ts       # Metadata for each decade
-│       │   ├── series1950.json  # Chart data files
-│       │   ├── series1970.json
-│       │   ├── series1990.json
-│       │   ├── series2000.json
-│       │   ├── series2010.json
-│       │   └── deaths_world.geojson
-│       ├── gsap/
-│       │   └── scrollOrchestrator.ts
-│       ├── stores/
-│       │   └── birthYear.ts
-│       └── styles/
-│           ├── tokens.scss
-│           └── global.scss
-├── static/
-│   ├── video/                   # Place video files here
-│   │   └── placeholder.txt
-│   ├── lottie/
-│   │   ├── title_morph.json
-│   │   └── lipstick_to_glow.json
-│   └── favicon.png
-├── tests/
-│   └── test.ts                  # Playwright tests
-├── package.json
-├── svelte.config.js
-├── vite.config.ts
+├── app/
+│   ├── layout.tsx              # Root layout with providers
+│   ├── page.tsx                # Main scrollytelling page
+│   ├── globals.css             # Global Tailwind styles
+│   └── daten/
+│       └── page.tsx            # Data and methodology page
+├── components/
+│   ├── AudioManager.tsx        # Background audio controller
+│   ├── BirthYearControl.tsx    # Birth year input
+│   ├── ChartWrapper.tsx        # D3 chart renderer
+│   ├── DecadeSection.tsx       # Decade content section
+│   ├── HeroCowboy.tsx          # Hero section
+│   ├── Interlude.tsx           # Interstitial sections
+│   ├── NarrativeBridge.tsx     # Narrative transitions
+│   ├── QuizMoment.tsx          # Interactive quiz
+│   └── VideoLooper.tsx         # Lazy-loaded video
+├── lib/
+│   ├── charts/                 # D3 chart implementations
+│   │   ├── chart1950.ts
+│   │   ├── chart1970.ts
+│   │   ├── chart1990.ts
+│   │   ├── chart2000.ts
+│   │   ├── chart2010.ts
+│   │   └── worldDeaths.ts
+│   ├── context/
+│   │   └── BirthYearContext.tsx # Birth year state
+│   ├── data/
+│   │   ├── decades.ts          # Decade metadata
+│   │   └── *.json              # Chart data
+│   └── gsap/
+│       └── scrollOrchestrator.ts # GSAP helpers
+├── public/
+│   ├── audio/                  # Audio files
+│   ├── video/                  # Video files
+│   └── lottie/                 # Lottie animations
+├── next.config.mjs
+├── tailwind.config.ts
 ├── tsconfig.json
-└── playwright.config.ts
+└── package.json
 ```
 
 ## Getting Started
