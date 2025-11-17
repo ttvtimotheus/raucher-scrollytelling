@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 
 import AudioManager from '@/components/AudioManager';
 import HeroCowboy from '@/components/HeroCowboy';
-import BirthYearControl from '@/components/BirthYearControl';
 import DecadeSection from '@/components/DecadeSection';
 import NarrativeBridge from '@/components/NarrativeBridge';
 import QuizMoment from '@/components/QuizMoment';
+import EmotionalInterlude from '@/components/EmotionalInterlude';
+import SilentMoment from '@/components/SilentMoment';
 import { decades } from '@/lib/data/decades';
 import { initScrollOrchestrator } from '@/lib/gsap/scrollOrchestrator';
 
@@ -26,18 +27,26 @@ export default function HomePage() {
       <AudioManager />
       <HeroCowboy />
 
-      <BirthYearControl />
-
       {mounted && (
         <>
+          {/* Opening Thought */}
+          <EmotionalInterlude text="Es begann mit einem Cowboy. Der nie existierte. Und acht Millionen Toten." />
+
           {/* 1950er: Visuelle Szene */}
           <DecadeSection section={decades[0]} layout="left" />
 
           {/* Bridge: 1950er Zusammenfassung */}
           <NarrativeBridge
             title="Die Geburt einer Ikone"
-            body="<p>In den 1950ern stieg der Zigarettenkonsum dramatisch. Aber das war kein Zufall.</p><p>Die Tabakindustrie erschuf den <strong>Marlboro Mann</strong> – eine Figur, die Freiheit, Männlichkeit und Unabhängigkeit verkörperte. Was niemand wußte: <em>Jede dieser Werbefiguren starb später an Lungenkrebs</em>.</p>"
+            body="<p>Eine Zigarette sah nicht mehr nach Tabak aus. Sie sah nach Freiheit aus.</p><p>Der <strong>Marlboro Mann</strong> verkörperte alles: Männlichkeit. Unabhängigkeit. Weite. Ein Cowboy, den es nie gab. Ein Traum, der tödlich war.</p><p>Jeder Marlboro Mann starb an Lungenkrebs. <em>Jeder einzelne</em>.</p>"
             highlight="Sie haben Freiheit versprochen. Und Abhängigkeit verkauft."
+          />
+
+          {/* Silent Moment: The Reality */}
+          <SilentMoment 
+            line1="Acht Millionen Tote."
+            line2="Und alles begann mit einem Cowboy."
+            duration="medium"
           />
 
           {/* 1970er: Daten */}
@@ -46,9 +55,11 @@ export default function HomePage() {
           {/* Bridge: 1970er Kontext */}
           <NarrativeBridge
             title="Die ersten Warnungen"
-            body="<p>In den 1970ern begannen Gesundheitswarnungen auf Zigarettenpackungen zu erscheinen. Die Industrie reagierte nicht mit Rückzug, sondern mit <strong>noch aggressiverer Werbung</strong>.</p><p>Fast die Hälfte aller Erwachsenen rauchte regelmäßig. Zigaretten waren nicht nur ein Produkt – sie waren Teil der Identität.</p>"
+            body="<p>Die Wahrheit stand auf jeder Packung. Klein. Gedruckt. Ignoriert.</p><p>Worte verblassen. Bilder brennen sich ein. Die Industrie machte die Cowboys cooler. Die Lügen schöner. Die Versprechen größer.</p><p>Die Hälfte aller Erwachsenen rauchte. Die Zigarette war nicht Produkt. Sie war Identität.</p>"
             highlight="Die Zigarette versprach nicht nur einen Moment. Sie versprach, wer du sein könntest."
           />
+
+          <EmotionalInterlude text="Werbung informiert nicht. Werbung erschafft. Bedürfnisse, die nie da waren. Sehnsüchte, die nie echt waren." />
 
           {/* Quiz: Werbeverbot */}
           <QuizMoment
@@ -69,7 +80,7 @@ export default function HomePage() {
           {/* Bridge: 1980er Strategie */}
           <NarrativeBridge
             title="Die Emanzipation als Marketingstrategie"
-            body="<p>Die 1980er brachten eine neue Zielgruppe: <strong>Frauen</strong>. 'You've Come a Long Way, Baby' war mehr als ein Slogan – es war eine Bewegung.</p><p>Die Industrie verkaufte Zigaretten als Symbol der Emanzipation. Der Anteil rauchender Frauen stieg dramatisch, während Männer langsam zurückgingen.</p>"
+            body="<p>Sie nahmen eine Revolution. Und verkauften sie in Schachteln.</p><p>'You've Come a Long Way, Baby' – das klang nach Befreiung. Nach Gleichberechtigung. Nach Fortschritt. Was sie verkauften: Dieselbe Sucht. Neue Verpackung.</p><p>Rauchende Frauen: verdoppelt. Nicht aus Wahl. Aus Manipulation.</p>"
             highlight="Was wie Feminismus aussah, war Manipulation."
           />
 
@@ -79,8 +90,15 @@ export default function HomePage() {
           {/* Bridge: 1990er Youth Culture */}
           <NarrativeBridge
             title="Die coole Rebellion"
-            body="<p>In den 1990ern fokussierte sich die Werbung auf <strong>Teenager</strong>. Joe Camel wurde zur Ikone einer Generation – cool, rebellisch, unabhängig.</p><p>Die Zahlen sprechen für sich: <em>Jugendliche rauchten in Rekordzahlen</em>. Was als Rebellion gegen das System verkauft wurde, war genau das, was das System wollte.</p>"
+            body="<p>Ein Cartoon-Kamel besiegte Mickey Mouse. Das war Absicht.</p><p>Joe Camel war überall. Lässig. Cool. Unbesiegbar. Kinder liebten ihn. Kinder wollten sein wie er. Kinder rauchten.</p><p><em>Jugendliche in Rekordzahlen</em>. Sie dachten: Rebellion. Sie dachten: Freiheit. Sie bekamen: Design. Ihre Coolness war gekauft. Ihre Zukunft verkauft.</p>"
             highlight="Jede Generation glaubt, sie wählt frei. Jede Generation wird gezielt manipuliert."
+          />
+
+          {/* Silent Moment: The Pattern */}
+          <SilentMoment 
+            line1="Jede Dekade."
+            line2="Dieselbe Lüge in neuen Farben."
+            duration="short"
           />
 
           {/* 2000er: Visuelle Szene */}
@@ -89,12 +107,20 @@ export default function HomePage() {
           {/* Bridge: 2000er Wandel */}
           <NarrativeBridge
             title="Der Rückzug der Giganten"
-            body="<p>Die 2000er markierten einen Wendepunkt. Werbeverbote wurden stärker, Raucherzahlen sanken, Werbebudgets schrumpften.</p><p>Aber die Industrie gab nicht auf. Sie veränderte nur ihre Strategie: <strong>Neue Produkte, neue Versprechen</strong>.</p>"
+            body="<p>Die Werbung verstummte. Die Cowboys verschwanden. Das Spiel endete.</p><p>Nein. Es bekam neue Regeln.</p><p><strong>E-Zigaretten. Vapes. Heat-not-burn.</strong> Neue Namen. Neue Farben. Neue Generation. Alte Sucht.</p><p>Das Versprechen: identisch. Freiheit im Taschenformat. Coolness zum Inhalieren.</p>"
             highlight="Das Spiel blieb gleich. Nur die Regeln änderten sich."
           />
 
           {/* 2010er/2020er: Finale Daten */}
           <DecadeSection section={decades[5]} layout="right" colorTheme="2010" />
+
+          {/* Silent Moment: The Choice */}
+          <SilentMoment 
+            line1="Es war nie deine Wahl."
+            duration="long"
+          />
+
+          <EmotionalInterlude text="Deine Entscheidung war nie deine. Ab jetzt kann sie es sein." />
         </>
       )}
 
@@ -123,10 +149,10 @@ export default function HomePage() {
             {/* Main Message */}
             <h2 className="font-headline text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.95] tracking-tighter">
               <span className="block text-white/90">
-                Es war nie deine
+                Es war nie
               </span>
               <span className="block bg-gradient-to-r from-white via-smoke-400 to-white bg-clip-text text-transparent">
-                Entscheidung allein.
+                deine Entscheidung.
               </span>
             </h2>
             

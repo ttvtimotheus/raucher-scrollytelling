@@ -91,7 +91,7 @@ export function HeroCowboy() {
   }, []);
 
   const scrollToNext = useCallback(() => {
-    const nextSection = document.querySelector('#birth-year-section');
+    const nextSection = document.querySelector('.decade-section');
     nextSection?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
