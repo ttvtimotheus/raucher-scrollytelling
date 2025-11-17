@@ -46,7 +46,10 @@ export function NarrativeBridge({ title, body, highlight }: NarrativeBridgeProps
   }, []);
 
   return (
-    <section ref={bridgeRef} className="relative min-h-screen bg-bg-dark">
+    <section
+      ref={bridgeRef}
+      className="narrative-bridge relative min-h-screen bg-gradient-to-b from-bg-section via-bg-dark to-bg-section px-6 py-32 md:px-12 my-20"
+    >
       {/* Parallax Background Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 right-0 h-96 w-96 animate-pulse rounded-full bg-smoke-500/5 blur-3xl" />

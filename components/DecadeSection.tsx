@@ -31,7 +31,7 @@ export function DecadeSection({ section, layout = 'left', colorTheme = '1950' }:
     <section
       id={section.id}
       data-decade={colorTheme}
-      className={`decade-section relative min-h-screen ${bgClass} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`decade-section relative min-h-screen ${bgClass} ${isVisible ? 'opacity-100' : 'opacity-0'} py-20`}
     >
       {/* Spotlight Effect */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">

@@ -9,6 +9,7 @@ import NarrativeBridge from '@/components/NarrativeBridge';
 import QuizMoment from '@/components/QuizMoment';
 import EmotionalInterlude from '@/components/EmotionalInterlude';
 import SilentMoment from '@/components/SilentMoment';
+import DecadeTransition from '@/components/DecadeTransition';
 import { decades } from '@/lib/data/decades';
 import { initScrollOrchestrator } from '@/lib/gsap/scrollOrchestrator';
 
@@ -32,6 +33,9 @@ export default function HomePage() {
           {/* Opening Thought */}
           <EmotionalInterlude text="Es begann mit einem Cowboy. Der nie existierte. Und acht Millionen Toten." />
 
+          {/* Decade: 1950er */}
+          <DecadeTransition decade="1950er" theme="smoke" />
+
           {/* 1950er: Visuelle Szene */}
           <DecadeSection section={decades[0]} layout="left" />
 
@@ -49,6 +53,9 @@ export default function HomePage() {
             duration="medium"
           />
 
+          {/* Decade: 1970er */}
+          <DecadeTransition decade="1970er" theme="dark" />
+
           {/* 1970er: Daten */}
           <DecadeSection section={decades[1]} layout="right" colorTheme="1970" />
 
@@ -60,6 +67,9 @@ export default function HomePage() {
           />
 
           <EmotionalInterlude text="Werbung informiert nicht. Werbung erschafft. Bedürfnisse, die nie da waren. Sehnsüchte, die nie echt waren." />
+
+          {/* Decade: 1980er */}
+          <DecadeTransition decade="1980er" theme="smoke" />
 
           {/* Quiz: Werbeverbot */}
           <QuizMoment
@@ -76,6 +86,9 @@ export default function HomePage() {
 
           {/* 1980er: Visuelle Szene */}
           <DecadeSection section={decades[2]} layout="left" colorTheme="1980" />
+
+          {/* Decade: 1990er */}
+          <DecadeTransition decade="1990er" theme="dark" />
 
           {/* Bridge: 1980er Strategie */}
           <NarrativeBridge
@@ -101,6 +114,9 @@ export default function HomePage() {
             duration="short"
           />
 
+          {/* Decade: 2000er */}
+          <DecadeTransition decade="2000er" theme="smoke" />
+
           {/* 2000er: Visuelle Szene */}
           <DecadeSection section={decades[4]} layout="left" colorTheme="2000" />
 
@@ -110,6 +126,9 @@ export default function HomePage() {
             body="<p>Die Werbung verstummte. Die Cowboys verschwanden. Das Spiel endete.</p><p>Nein. Es bekam neue Regeln.</p><p><strong>E-Zigaretten. Vapes. Heat-not-burn.</strong> Neue Namen. Neue Farben. Neue Generation. Alte Sucht.</p><p>Das Versprechen: identisch. Freiheit im Taschenformat. Coolness zum Inhalieren.</p>"
             highlight="Das Spiel blieb gleich. Nur die Regeln änderten sich."
           />
+
+          {/* Decade: 2010er */}
+          <DecadeTransition decade="2010er" theme="dark" />
 
           {/* 2010er/2020er: Finale Daten */}
           <DecadeSection section={decades[5]} layout="right" colorTheme="2010" />

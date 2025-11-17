@@ -83,7 +83,7 @@ export function QuizMoment({ question, options, correctAnswer, explanation }: Qu
               <button
                 onClick={handleReveal}
                 disabled={selected === null}
-                className="magnetic-button mx-auto block rounded-full bg-gradient-to-r from-smoke-500 to-smoke-600 px-12 py-5 text-lg font-semibold text-white shadow-2xl shadow-smoke-500/50 transition-all hover:scale-105 hover:shadow-smoke-500/70 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
+                className="magnetic-button mx-auto block rounded-full bg-gradient-to-r from-smoke-500 to-smoke-600 px-12 py-6 text-lg font-semibold text-white shadow-2xl shadow-smoke-500/50 transition-all hover:scale-105 hover:shadow-smoke-500/70 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 mt-8"
               >
                 Antwort zeigen
               </button>

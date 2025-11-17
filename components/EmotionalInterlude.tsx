@@ -39,7 +39,7 @@ export function EmotionalInterlude({ text }: EmotionalInterludeProps) {
   return (
     <section
       ref={interludeRef}
-      className="emotional-interlude relative flex min-h-[60vh] items-center justify-center overflow-hidden bg-gradient-to-b from-bg-dark via-bg-section to-bg-dark px-8 py-20"
+      className="emotional-interlude relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-gradient-to-b from-bg-dark via-bg-section to-bg-dark px-8 py-32"
     >
       {/* Subtle Glow */}
       <div className="pointer-events-none absolute inset-0">
