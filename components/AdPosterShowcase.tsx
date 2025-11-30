@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -24,7 +25,6 @@ interface AdPosterShowcaseProps {
 }
 
 export function AdPosterShowcase({ decade, posters, learningPoints }: AdPosterShowcaseProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
   const showcaseRef = useRef<HTMLDivElement | null>(null);
   const postersRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -32,7 +32,7 @@ export function AdPosterShowcase({ decade, posters, learningPoints }: AdPosterSh
     if (!showcaseRef.current) return;
 
     const ctx = gsap.context(() => {
-      postersRef.current.forEach((poster, index) => {
+      postersRef.current.forEach((poster) => {
         if (!poster) return;
 
         gsap.from(poster, {
@@ -98,10 +98,11 @@ export function AdPosterShowcase({ decade, posters, learningPoints }: AdPosterSh
             >
               {/* Poster Image */}
               <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900">
-                <img
+                <Image
                   src={poster.image}
                   alt={`${poster.brand} Werbeplakat von ${poster.year}`}
-                  className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
 
                 {/* Overlay on Hover */}
